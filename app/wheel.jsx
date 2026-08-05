@@ -443,7 +443,7 @@ function LuckyWheelWidget({ state, theme, activeKey, setActiveKey, onAddProgress
               padding: cta ? '18px 16px' : '16px 14px', display: 'flex', alignItems: 'stretch', gap: 8,
               minHeight: 188, overflow: 'hidden',
               animation: theme.headingFx === 'neon' ? 'neonFlicker 6s linear infinite' : 'none'
-            }, borderRadius: "0px", width: "416px", height: cta ? "auto" : "204px", minHeight: cta ? 0 : 188, gap: "0px" }, height: cta ? "auto" : theme.bigWheels ? "196px" : "160px", alignItems: "center", padding: "24px 16px 16px", margin: "8px 0px 24px", width: "416px" }}>
+            }, borderRadius: "0px", width: "416px", height: cta ? "auto" : "204px", minHeight: cta ? 0 : 188, gap: "0px" }, height: theme.cardHeight || (cta ? "auto" : theme.bigWheels ? "196px" : "160px"), alignItems: "center", padding: theme.cardPadding || "24px 16px 16px", margin: "8px 0px 24px", width: "416px" }}>
         <ThemeOverlay theme={theme} />
 
         {/* animated gradient border (screenshot frame) */}

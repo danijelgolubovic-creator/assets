@@ -31,6 +31,8 @@ const THEMES = {
     frontSize: 180, backSize: 126, bigWheels: true, // wheel-loader size matches Midnight (V8)
     hideTokenMeter: true, // no "Loading" label / token row under the header
     wheelBleed: true, // wheel cluster overlaps the card's border line
+    cardPadding: '12px 16px 8px', // top/bottom padding halved
+    cardHeight: '160px', // shorter than the ring so it overlaps the top/bottom border too
     countdownDays: 7,
   },
   refined: {
