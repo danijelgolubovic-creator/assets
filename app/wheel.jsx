@@ -394,7 +394,7 @@ function LuckyWheelWidget({ state, theme, activeKey, setActiveKey, onAddProgress
   if (mono) {headingStyle.fontFamily = 'ui-monospace, monospace';headingStyle.textTransform = 'uppercase';}
 
   const baseSize = cta ? 180 : FRONT;
-  const backRight = theme.wheelOverlap != null ? theme.wheelOverlap : cta ? 90 : 90;
+  const backRight = cta ? 90 : 90;
   const backScale = +(BACK / baseSize).toFixed(3); // shrink the unfocused token
 
   const rightCluster =
@@ -407,8 +407,7 @@ function LuckyWheelWidget({ state, theme, activeKey, setActiveKey, onAddProgress
       width: 180, height: 180, zIndex: 8, touchAction: 'pan-y',
       filter: 'drop-shadow(0 12px 24px rgba(0,0,0,.55))'
     } : {
-      position: 'relative', width: theme.bigWheels ? 210 : 188, height: theme.bigWheels ? 188 : 170, flexShrink: 0, touchAction: 'pan-y', alignSelf: 'center',
-      marginLeft: theme.hugContent ? 'auto' : undefined
+      position: 'relative', width: theme.bigWheels ? 210 : 188, height: theme.bigWheels ? 188 : 170, flexShrink: 0, touchAction: 'pan-y', alignSelf: 'center'
     }}>
       {ORDER.map((k) => {
         const isA = k === activeKey;
@@ -483,7 +482,7 @@ function LuckyWheelWidget({ state, theme, activeKey, setActiveKey, onAddProgress
           <div style={{ marginTop: 14 }}><SwipeDots active={activeKey} theme={theme} /></div>
         </div> :
 
-          <div style={{ flex: theme.hugContent ? '0 1 auto' : '1 1 0', minWidth: 0, position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column' }}>
+          <div style={{ flex: '1 1 0', minWidth: 0, position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column' }}>
           <div className="u" style={headingStyle}>Lucky wheel</div>
           <div style={{ fontSize: 11, color: 'var(--ink-dim)', lineHeight: 1.4, marginTop: 3, maxWidth: 150 }}>
             Swipe to switch · fill the tokens to charge each wheel
