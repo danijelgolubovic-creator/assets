@@ -24,12 +24,13 @@ const THEMES = {
     border: '1px solid var(--card-glow, #ff40ec)',
     boxShadow: '0 0 0 1px color-mix(in srgb, var(--card-glow,#ff40ec) 22%, transparent), 0 18px 40px -18px color-mix(in srgb, var(--card-glow,#ff40ec) 40%, transparent), inset 0 1px 0 rgba(255,255,255,.05)',
     radius: 18, clip: null, overlay: null,
-    glowMul: 1.4, // Gold Rush loading-glow feel, carried into the accumulation meter
-    rim: 'soft', tokenShape: 'coin', tokenCount: 12, // Gold Rush coin tokens on the accumulation meter
+    glowMul: 1.4, // Gold Rush loading-glow feel
+    rim: 'soft', tokenShape: 'chip', tokenCount: 12,
     accent: '#ff40ec', heading: '#ffffff', headingFx: 'shimmer', // Gold Rush shimmer on the header
     titleSpacing: '-.01em',
     frontSize: 180, backSize: 126, bigWheels: true, // wheel-loader size matches Midnight (V8)
-    hideTokenMeter: true, // no "Loading" label / token row under the header
+    chip: true, chipVariant: 'gold', // Gold Rush poker-chip loader
+    wheelBleed: true, // chip cluster overlaps the card's border line
     countdownDays: 7,
   },
   refined: {

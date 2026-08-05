@@ -49,6 +49,7 @@ function CountdownBadge({ theme }) {
 /* ----- Poker-chip progress loader (V5/V6) — faithful to the Figma token ----- */
 function ChipRing({ cfg, theme, progress, ready, cooldown, size = 128, intensity = 'mid', snap = false }) {
   const neon = theme.chipVariant === 'neon';
+  const gold = theme.chipVariant === 'gold';
   const R = 68,C = 2 * Math.PI * R;
   const p = ready ? 1 : Math.max(0, Math.min(1, progress / 100));
   const off = C * (1 - p);
@@ -73,9 +74,18 @@ function ChipRing({ cfg, theme, progress, ready, cooldown, size = 128, intensity
         animation: 'spinSlow 9s linear infinite', pointerEvents: 'none'
       }} />
       }
+      {gold &&
+      <div style={{
+        position: 'absolute', inset: -size * 0.05, borderRadius: '50%',
+        background: 'conic-gradient(from 0deg, #ffe07a, #ffb52e, #ffe07a)',
+        filter: `blur(${size * 0.06}px)`, opacity: ready ? 0.8 : 0.5,
+        animation: 'spinSlow 9s linear infinite', pointerEvents: 'none'
+      }} />
+      }
       <img src={window.LW_BEZEL || 'assets/token-bezel.png'} alt="" draggable="false" style={{
         position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',
-        filter: neon ? 'saturate(1.15) brightness(1.06) drop-shadow(0 0 6px rgba(44,223,246,.4))' : 'none'
+        filter: neon ? 'saturate(1.15) brightness(1.06) drop-shadow(0 0 6px rgba(44,223,246,.4))' :
+          gold ? 'saturate(1.15) brightness(1.08) drop-shadow(0 0 8px rgba(255,210,62,.55))' : 'none'
       }} />
       <svg viewBox="0 0 200 200" width={size} height={size} style={{ position: 'absolute', inset: 0, overflow: 'visible' }}>
         <defs>
@@ -396,15 +406,16 @@ function LuckyWheelWidget({ state, theme, activeKey, setActiveKey, onAddProgress
   const baseSize = cta ? 180 : FRONT;
   const backRight = cta ? 90 : 90;
   const backScale = +(BACK / baseSize).toFixed(3); // shrink the unfocused token
+  const bleed = cta || theme.wheelBleed; // cluster overlaps the card's border line
 
   const rightCluster =
   <div
     className="no-select"
     onMouseDown={onDown} onMouseMove={onMove} onMouseUp={onUp} onMouseLeave={onUp}
     onTouchStart={onDown} onTouchMove={onMove} onTouchEnd={onUp}
-    style={cta ? {
-      position: 'absolute', right: -12, top: '50%', transform: 'translateY(-50%)',
-      width: 180, height: 180, zIndex: 8, touchAction: 'pan-y',
+    style={bleed ? {
+      position: 'absolute', right: theme.wheelBleedOffset != null ? theme.wheelBleedOffset : -12, top: '50%', transform: 'translateY(-50%)',
+      width: baseSize, height: baseSize, zIndex: 8, touchAction: 'pan-y',
       filter: 'drop-shadow(0 12px 24px rgba(0,0,0,.55))'
     } : {
       position: 'relative', width: theme.bigWheels ? 210 : 188, height: theme.bigWheels ? 188 : 170, flexShrink: 0, touchAction: 'pan-y', alignSelf: 'center'
@@ -507,9 +518,9 @@ function LuckyWheelWidget({ state, theme, activeKey, setActiveKey, onAddProgress
         </div>
           }
 
-        {!cta && rightCluster}
+        {!bleed && rightCluster}
       </div>
-      {cta && rightCluster}
+      {bleed && rightCluster}
       </div>
 
       {/* Demo control */}
