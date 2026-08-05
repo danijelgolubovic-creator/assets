@@ -14,6 +14,39 @@ const WHEELS = {
 };
 const ORDER = ['sportsbook', 'gambling'];
 
+/* ----- Countdown hook — fixed target set once on mount, ticks every second ----- */
+function useCountdown(days) {
+  const [target] = useState(() => Date.now() + days * 24 * 60 * 60 * 1000);
+  const [left, setLeft] = useState(() => Math.max(0, target - Date.now()));
+  useEffect(() => {
+    const id = setInterval(() => setLeft(Math.max(0, target - Date.now())), 1000);
+    return () => clearInterval(id);
+  }, [target]);
+  const totalSec = Math.floor(left / 1000);
+  return {
+    d: Math.floor(totalSec / 86400),
+    h: Math.floor(totalSec % 86400 / 3600),
+    m: Math.floor(totalSec % 3600 / 60),
+    s: totalSec % 60
+  };
+}
+
+/* ----- Small "Ends in ..." countdown badge ----- */
+function CountdownBadge({ theme }) {
+  const { d, h, m, s } = useCountdown(theme.countdownDays);
+  return (
+    <div style={{
+      display: 'inline-flex', alignItems: 'center', gap: 5, marginTop: 5,
+      fontSize: 10.5, fontWeight: 700, letterSpacing: '.02em', color: theme.accent
+    }}>
+      <span style={{ fontSize: 11 }}>⏳</span>
+      <span>
+        Ends in {d}d {String(h).padStart(2, '0')}h {String(m).padStart(2, '0')}m {String(s).padStart(2, '0')}s
+      </span>
+    </div>
+  );
+}
+
 /* ----- Poker-chip progress loader (V5/V6) — faithful to the Figma token ----- */
 function ChipRing({ cfg, theme, progress, ready, cooldown, size = 128, intensity = 'mid', snap = false }) {
   const neon = theme.chipVariant === 'neon';
@@ -206,6 +239,7 @@ function WheelToken({ cfg, theme, progress, ready, cooldown, front, size, intens
   // are intentionally left as-is (glow pulse only).
   const READY_MOTION = {
     final: 'chipRock 1.7s ease-in-out infinite',       // Final — Gold Rush loading animation
+    final2: 'chipRock 1.7s ease-in-out infinite',      // Final v2 — same Gold Rush feel
     gold: 'chipRock 1.7s ease-in-out infinite',       // V3 — rocks like the header
     chipNeon: 'chipPulse 1.25s ease-in-out infinite', // V6 — scale pulse
     neonFrame: 'chipBob 1.2s ease-in-out infinite',   // V7 — bobs up/down
@@ -438,6 +472,7 @@ function LuckyWheelWidget({ state, theme, activeKey, setActiveKey, onAddProgress
           <div style={{ fontSize: 12.5, color: 'var(--ink-dim)', lineHeight: 1.4, marginTop: 7, maxWidth: 172 }}>
             Swipe left or right to track the progress of wheel
           </div>
+          {theme.countdownDays && <CountdownBadge theme={theme} />}
           <button onClick={onInfo} style={{
               marginTop: 16, alignSelf: 'flex-start', padding: '12px 18px', borderRadius: 0,
               fontSize: 13.5, fontWeight: 800, color: '#07091d', whiteSpace: 'nowrap',
@@ -453,9 +488,10 @@ function LuckyWheelWidget({ state, theme, activeKey, setActiveKey, onAddProgress
           <div style={{ fontSize: 11, color: 'var(--ink-dim)', lineHeight: 1.4, marginTop: 3, maxWidth: 150 }}>
             Swipe to switch · fill the tokens to charge each wheel
           </div>
+          {theme.countdownDays && <CountdownBadge theme={theme} />}
 
           {/* token meter (hidden on chip loaders — the chip itself shows progress) */}
-          {!theme.chip &&
+          {!theme.chip && !theme.hideTokenMeter &&
             <div style={{ marginTop: 11 }}>
               <TokenMeter cfg={cfgActive} theme={theme} progress={sActive.progress} ready={sActive.ready} cooldown={sActive.cooldown} />
             </div>

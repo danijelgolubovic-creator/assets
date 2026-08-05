@@ -4,7 +4,7 @@ const { useState: useStateA, useEffect: useEffectA, useRef: useRefA } = React;
 const COOLDOWN_SEC = 45;
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "version": "final",
+  "version": "final2",
   "intensity": "Refined",
   "border": "#ff40ec",
   "showHint": true,
@@ -12,8 +12,8 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 } /*EDITMODE-END*/;
 
 const INTEN_MAP = { Subtle: 'low', Refined: 'mid', Vegas: 'high' };
-const VERSION_LABEL = { final: 'Final', refined: 'Refined', gold: 'Gold', chip: 'Chip Classic', chipNeon: 'Chip Neon', neonFrame: 'Neon Frame', midnight: 'Midnight', royale: 'Royale' };
-const LABEL_VERSION = { Final: 'final', Refined: 'refined', Gold: 'gold', 'Chip Classic': 'chip', 'Chip Neon': 'chipNeon', 'Neon Frame': 'neonFrame', Midnight: 'midnight', Royale: 'royale' };
+const VERSION_LABEL = { final: 'Final', final2: 'Final v2', refined: 'Refined', gold: 'Gold', chip: 'Chip Classic', chipNeon: 'Chip Neon', neonFrame: 'Neon Frame', midnight: 'Midnight', royale: 'Royale' };
+const LABEL_VERSION = { Final: 'final', 'Final v2': 'final2', Refined: 'refined', Gold: 'gold', 'Chip Classic': 'chip', 'Chip Neon': 'chipNeon', 'Neon Frame': 'neonFrame', Midnight: 'midnight', Royale: 'royale' };
 
 /* ---------- small UI bits ---------- */
 function StatusBar() {
@@ -319,7 +319,7 @@ function App() {
       <TweaksPanel>
         <TweakSection label="Design version" />
         <TweakSelect label="Style" value={VERSION_LABEL[t.version] || 'Refined'}
-        options={['Final', 'Refined', 'Gold', 'Chip Classic', 'Chip Neon', 'Neon Frame', 'Midnight', 'Royale']}
+        options={['Final', 'Final v2', 'Refined', 'Gold', 'Chip Classic', 'Chip Neon', 'Neon Frame', 'Midnight', 'Royale']}
         onChange={(v) => setTweak('version', LABEL_VERSION[v])} />
         <TweakSection label="Feel" />
         <TweakRadio label="Intensity" value={t.intensity} options={['Subtle', 'Refined', 'Vegas']} onChange={(v) => setTweak('intensity', v)} />

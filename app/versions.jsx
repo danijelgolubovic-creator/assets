@@ -17,6 +17,21 @@ const THEMES = {
     titleSpacing: '-.01em',
     frontSize: 172, backSize: 120, bigWheels: true, // SIZES like Midnight
   },
+  final2: {
+    key: 'final2', name: 'Final v2', tag: 'FIN2',
+    // OSNOVA: Refined card/look
+    cardBg: 'linear-gradient(180deg, rgba(12,15,32,.72), rgba(7,9,29,.62))',
+    border: '1px solid var(--card-glow, #ff40ec)',
+    boxShadow: '0 0 0 1px color-mix(in srgb, var(--card-glow,#ff40ec) 22%, transparent), 0 18px 40px -18px color-mix(in srgb, var(--card-glow,#ff40ec) 40%, transparent), inset 0 1px 0 rgba(255,255,255,.05)',
+    radius: 18, clip: null, overlay: null,
+    glowMul: 1.4, // Gold Rush loading-glow feel, carried into the accumulation meter
+    rim: 'soft', tokenShape: 'coin', tokenCount: 12, // Gold Rush coin tokens on the accumulation meter
+    accent: '#ff40ec', heading: '#ffffff', headingFx: 'shimmer', // Gold Rush shimmer on the header
+    titleSpacing: '-.01em',
+    frontSize: 180, backSize: 126, bigWheels: true, // wheel-loader size matches Midnight (V8)
+    hideTokenMeter: true, // no "Loading" label / token row under the header
+    countdownDays: 7,
+  },
   refined: {
     key: 'refined', name: 'Refined', tag: 'V1',
     cardBg: 'linear-gradient(180deg, rgba(12,15,32,.72), rgba(7,9,29,.62))',
@@ -97,7 +112,7 @@ const THEMES = {
     frameAnim: true,
   },
 };
-const THEME_ORDER = ['final', 'refined', 'gold', 'chip', 'chipNeon', 'neonFrame', 'midnight', 'royale'];
+const THEME_ORDER = ['final', 'final2', 'refined', 'gold', 'chip', 'chipNeon', 'neonFrame', 'midnight', 'royale'];
 window.THEMES = THEMES;
 window.THEME_ORDER = THEME_ORDER;
 
