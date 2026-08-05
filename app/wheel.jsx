@@ -39,7 +39,6 @@ function CountdownBadge({ theme }) {
       display: 'inline-flex', alignItems: 'center', gap: 5, marginTop: 5,
       fontSize: 10.5, fontWeight: 700, letterSpacing: '.02em', color: theme.accent
     }}>
-      <span style={{ fontSize: 11 }}>⏳</span>
       <span>
         Ends in {d}d {String(h).padStart(2, '0')}h {String(m).padStart(2, '0')}m {String(s).padStart(2, '0')}s
       </span>
