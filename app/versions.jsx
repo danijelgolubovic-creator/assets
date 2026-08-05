@@ -31,6 +31,8 @@ const THEMES = {
     frontSize: 180, backSize: 126, bigWheels: true, // wheel-loader size matches Midnight (V8)
     hideTokenMeter: true, // no "Loading" label / token row under the header
     countdownDays: 7,
+    hugContent: true, // left column shrinks to its content instead of stretching
+    wheelOverlap: 65, // back wheel sits closer under the front one
   },
   refined: {
     key: 'refined', name: 'Refined', tag: 'V1',
