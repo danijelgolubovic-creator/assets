@@ -33,6 +33,7 @@ const THEMES = {
     wheelBleed: true, // wheel cluster overlaps the card's border line
     cardPadding: '12px 16px 8px', // top/bottom padding halved
     cardHeight: '160px', // shorter than the ring so it overlaps the top/bottom border too
+    cardMinHeight: 0, // no min-height floor
     countdownDays: 7,
   },
   refined: {
