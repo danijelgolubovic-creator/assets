@@ -25,12 +25,12 @@ const THEMES = {
     boxShadow: '0 0 0 1px color-mix(in srgb, var(--card-glow,#ff40ec) 22%, transparent), 0 18px 40px -18px color-mix(in srgb, var(--card-glow,#ff40ec) 40%, transparent), inset 0 1px 0 rgba(255,255,255,.05)',
     radius: 18, clip: null, overlay: null,
     glowMul: 1.4, // Gold Rush loading-glow feel
-    rim: 'soft', tokenShape: 'chip', tokenCount: 12,
+    rim: 'gold', tokenShape: 'chip', tokenCount: 12, // Gold Rush ring rim
     accent: '#ff40ec', heading: '#ffffff', headingFx: 'shimmer', // Gold Rush shimmer on the header
     titleSpacing: '-.01em',
     frontSize: 180, backSize: 126, bigWheels: true, // wheel-loader size matches Midnight (V8)
-    chip: true, chipVariant: 'gold', // Gold Rush poker-chip loader
-    wheelBleed: true, // chip cluster overlaps the card's border line
+    hideTokenMeter: true, // no "Loading" label / token row under the header
+    wheelBleed: true, // wheel cluster overlaps the card's border line
     countdownDays: 7,
   },
   refined: {

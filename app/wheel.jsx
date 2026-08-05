@@ -49,7 +49,6 @@ function CountdownBadge({ theme }) {
 /* ----- Poker-chip progress loader (V5/V6) — faithful to the Figma token ----- */
 function ChipRing({ cfg, theme, progress, ready, cooldown, size = 128, intensity = 'mid', snap = false }) {
   const neon = theme.chipVariant === 'neon';
-  const gold = theme.chipVariant === 'gold';
   const R = 68,C = 2 * Math.PI * R;
   const p = ready ? 1 : Math.max(0, Math.min(1, progress / 100));
   const off = C * (1 - p);
@@ -74,18 +73,9 @@ function ChipRing({ cfg, theme, progress, ready, cooldown, size = 128, intensity
         animation: 'spinSlow 9s linear infinite', pointerEvents: 'none'
       }} />
       }
-      {gold &&
-      <div style={{
-        position: 'absolute', inset: -size * 0.05, borderRadius: '50%',
-        background: 'conic-gradient(from 0deg, #ffe07a, #ffb52e, #ffe07a)',
-        filter: `blur(${size * 0.06}px)`, opacity: ready ? 0.8 : 0.5,
-        animation: 'spinSlow 9s linear infinite', pointerEvents: 'none'
-      }} />
-      }
       <img src={window.LW_BEZEL || 'assets/token-bezel.png'} alt="" draggable="false" style={{
         position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',
-        filter: neon ? 'saturate(1.15) brightness(1.06) drop-shadow(0 0 6px rgba(44,223,246,.4))' :
-          gold ? 'saturate(1.15) brightness(1.08) drop-shadow(0 0 8px rgba(255,210,62,.55))' : 'none'
+        filter: neon ? 'saturate(1.15) brightness(1.06) drop-shadow(0 0 6px rgba(44,223,246,.4))' : 'none'
       }} />
       <svg viewBox="0 0 200 200" width={size} height={size} style={{ position: 'absolute', inset: 0, overflow: 'visible' }}>
         <defs>
